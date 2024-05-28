@@ -1,4 +1,7 @@
-# solr
+# solr LOCAL environment (DEV environment)
+
+## Windows OS
+
 1. deschide
 [GitHUB Desktop](https://desktop.github.com/)
 2. clonezi **peviitor-ro\solr** in folderul **c:\solrdata**
