@@ -1,8 +1,7 @@
 # solr
 1. deschide
 [GitHUB Desktop](https://desktop.github.com/)
-2.
-clonezi **peviitor-ro\solr** in folderul **c:\solrdata**
+2. clonezi **peviitor-ro\solr** in folderul **c:\solrdata**
 
 3. deschide
 [Docker Desktop](https://www.docker.com/products/docker-desktop/)
