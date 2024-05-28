@@ -18,3 +18,6 @@
 
    ![image](https://github.com/peviitor-ro/solr/assets/41440889/88af14d4-7906-4178-8f80-f601f8d44207)
 
+
+# solr QA environment (QA environment)
+[http://zimbor.go.ro:8985/](http://zimbor.go.ro:8985/)
