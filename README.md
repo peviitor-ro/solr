@@ -5,4 +5,6 @@
 
 ## Porneste Docker Desktop
 ## cmd
-## docker run -p 8983:8983 -v c:\solrdata\solr\core:/var/solr sebiboga/peviitor
+```
+ docker run -p 8983:8983 -v c:\solrdata\solr\core:/var/solr sebiboga/peviitor:1.0.0
+```
