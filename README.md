@@ -10,3 +10,5 @@
 ```
  docker run -p 8983:8983 -v c:\solrdata\solr\core:/var/solr sebiboga/peviitor:1.0.0
 ```
+4. deschide Chrome browser
+5. localhost:8983/
