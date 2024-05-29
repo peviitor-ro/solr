@@ -2,6 +2,13 @@
 
 ## Windows OS
 
+## run this command if not yet run previously
+`cmd`
+```
+docker network create --subnet=172.18.0.0/16 mynetwork
+```
+
+
 1. deschide
 [GitHUB Desktop](https://desktop.github.com/)
 2. clonezi **peviitor-ro\solr** in folderul **c:\solrdata**
