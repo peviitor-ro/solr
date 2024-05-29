@@ -18,7 +18,7 @@ docker network create --subnet=172.18.0.0/16 mynetwork
 
 `cmd`
 ```
- docker run -p 8983:8983 -d -v c:\solrdata\solr\core:/var/solr sebiboga/peviitor:1.0.0
+docker run --name solr-container --network mynetwork --ip 172.18.0.10 -d -p 8983:8983 -v c:\solrdata\solr\core:/var/solr sebiboga/peviitor:1.0.0
 ```
 4. deschide Chrome browser
 5. [http://localhost:8983/](http://localhost:8983/)
