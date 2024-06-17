@@ -1,5 +1,3 @@
-# solr LOCAL environment (DEV environment)
-
 ## Windows OS
 
 
