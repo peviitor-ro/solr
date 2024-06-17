@@ -28,3 +28,7 @@ docker run --name solr-container --network mynetwork --ip 172.18.0.10 -d -p 8983
 
 # solr QA environment (QA environment)
 [http://zimbor.go.ro:8985/](http://zimbor.go.ro:8985/)
+
+
+## using _config
+1. double click on run.bat from **_config** folder
