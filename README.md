@@ -2,6 +2,8 @@
 
 ## Windows OS
 
+
+# solr LOCAL  environment (DEV environment)
 ## run this command if not yet run previously
 `cmd`
 ```
@@ -26,9 +28,11 @@ docker run --name solr-container --network mynetwork --ip 172.18.0.10 -d -p 8983
    ![image](https://github.com/peviitor-ro/solr/assets/41440889/88af14d4-7906-4178-8f80-f601f8d44207)
 
 
+
+## using _config
+1. double click on run.bat from **_config** folder
+
 # solr QA environment (QA environment)
 [http://zimbor.go.ro:8985/](http://zimbor.go.ro:8985/)
 
 
-## using _config
-1. double click on run.bat from **_config** folder
