@@ -1,0 +1,1292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Solr managed schema - automatically generated - DO NOT EDIT -->
+<schema name="default-config" version="1.6">
+  <uniqueKey>id</uniqueKey>
+  <fieldType name="_nest_path_" class="solr.NestPathField" maxCharsForDocValues="-1" omitNorms="true" omitTermFreqAndPositions="true" stored="false" multiValued="false"/>
+  <fieldType name="ancestor_path" class="solr.TextField">
+    <analyzer type="index">
+      <tokenizer class="solr.KeywordTokenizerFactory"/>
+    </analyzer>
+    <analyzer type="query">
+      <tokenizer class="solr.PathHierarchyTokenizerFactory" delimiter="/"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="binary" class="solr.BinaryField"/>
+  <fieldType name="boolean" class="solr.BoolField" sortMissingLast="true"/>
+  <fieldType name="booleans" class="solr.BoolField" sortMissingLast="true" multiValued="true"/>
+  <fieldType name="delimited_payloads_float" class="solr.TextField" indexed="true" stored="false">
+    <analyzer>
+      <tokenizer class="solr.WhitespaceTokenizerFactory"/>
+      <filter class="solr.DelimitedPayloadTokenFilterFactory" encoder="float"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="delimited_payloads_int" class="solr.TextField" indexed="true" stored="false">
+    <analyzer>
+      <tokenizer class="solr.WhitespaceTokenizerFactory"/>
+      <filter class="solr.DelimitedPayloadTokenFilterFactory" encoder="integer"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="delimited_payloads_string" class="solr.TextField" indexed="true" stored="false">
+    <analyzer>
+      <tokenizer class="solr.WhitespaceTokenizerFactory"/>
+      <filter class="solr.DelimitedPayloadTokenFilterFactory" encoder="identity"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="descendent_path" class="solr.TextField">
+    <analyzer type="index">
+      <tokenizer class="solr.PathHierarchyTokenizerFactory" delimiter="/"/>
+    </analyzer>
+    <analyzer type="query">
+      <tokenizer class="solr.KeywordTokenizerFactory"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="ignored" class="solr.StrField" indexed="false" stored="false" multiValued="true"/>
+  <fieldType name="location" class="solr.LatLonPointSpatialField" docValues="true"/>
+  <fieldType name="location_rpt" class="solr.SpatialRecursivePrefixTreeFieldType" geo="true" maxDistErr="0.001" distErrPct="0.025" distanceUnits="kilometers"/>
+  <fieldType name="lowercase" class="solr.TextField" positionIncrementGap="100">
+    <analyzer>
+      <tokenizer class="solr.KeywordTokenizerFactory"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="pdate" class="solr.DatePointField" docValues="true"/>
+  <fieldType name="pdates" class="solr.DatePointField" docValues="true" multiValued="true"/>
+  <fieldType name="pdouble" class="solr.DoublePointField" docValues="true"/>
+  <fieldType name="pdoubles" class="solr.DoublePointField" docValues="true" multiValued="true"/>
+  <fieldType name="pfloat" class="solr.FloatPointField" docValues="true"/>
+  <fieldType name="pfloats" class="solr.FloatPointField" docValues="true" multiValued="true"/>
+  <fieldType name="phonetic_en" class="solr.TextField" indexed="true" stored="false">
+    <analyzer>
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.DoubleMetaphoneFilterFactory" inject="false"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="pint" class="solr.IntPointField" docValues="true"/>
+  <fieldType name="pints" class="solr.IntPointField" docValues="true" multiValued="true"/>
+  <fieldType name="plong" class="solr.LongPointField" docValues="true"/>
+  <fieldType name="plongs" class="solr.LongPointField" docValues="true" multiValued="true"/>
+  <fieldType name="point" class="solr.PointType" subFieldSuffix="_d" dimension="2"/>
+  <fieldType name="random" class="solr.RandomSortField" indexed="true"/>
+  <fieldType name="rank" class="solr.RankField"/>
+  <fieldType name="string" class="solr.StrField" sortMissingLast="true" docValues="true"/>
+  <fieldType name="strings" class="solr.StrField" sortMissingLast="true" docValues="true" multiValued="true"/>
+  <fieldType name="text_ar" class="solr.TextField" positionIncrementGap="100">
+    <analyzer>
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+      <filter class="solr.StopFilterFactory" words="lang/stopwords_ar.txt" ignoreCase="true"/>
+      <filter class="solr.ArabicNormalizationFilterFactory"/>
+      <filter class="solr.ArabicStemFilterFactory"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="text_bg" class="solr.TextField" positionIncrementGap="100">
+    <analyzer>
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+      <filter class="solr.StopFilterFactory" words="lang/stopwords_bg.txt" ignoreCase="true"/>
+      <filter class="solr.BulgarianStemFilterFactory"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="text_ca" class="solr.TextField" positionIncrementGap="100">
+    <analyzer>
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.ElisionFilterFactory" articles="lang/contractions_ca.txt" ignoreCase="true"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+      <filter class="solr.StopFilterFactory" words="lang/stopwords_ca.txt" ignoreCase="true"/>
+      <filter class="solr.SnowballPorterFilterFactory" language="Catalan"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="text_cjk" class="solr.TextField" positionIncrementGap="100">
+    <analyzer>
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.CJKWidthFilterFactory"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+      <filter class="solr.CJKBigramFilterFactory"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="text_cz" class="solr.TextField" positionIncrementGap="100">
+    <analyzer>
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+      <filter class="solr.StopFilterFactory" words="lang/stopwords_cz.txt" ignoreCase="true"/>
+      <filter class="solr.CzechStemFilterFactory"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="text_da" class="solr.TextField" positionIncrementGap="100">
+    <analyzer>
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+      <filter class="solr.StopFilterFactory" format="snowball" words="lang/stopwords_da.txt" ignoreCase="true"/>
+      <filter class="solr.SnowballPorterFilterFactory" language="Danish"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="text_de" class="solr.TextField" positionIncrementGap="100">
+    <analyzer>
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+      <filter class="solr.StopFilterFactory" format="snowball" words="lang/stopwords_de.txt" ignoreCase="true"/>
+      <filter class="solr.GermanNormalizationFilterFactory"/>
+      <filter class="solr.GermanLightStemFilterFactory"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="text_el" class="solr.TextField" positionIncrementGap="100">
+    <analyzer>
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.GreekLowerCaseFilterFactory"/>
+      <filter class="solr.StopFilterFactory" words="lang/stopwords_el.txt" ignoreCase="false"/>
+      <filter class="solr.GreekStemFilterFactory"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="text_en" class="solr.TextField" positionIncrementGap="100">
+    <analyzer type="index">
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.StopFilterFactory" words="lang/stopwords_en.txt" ignoreCase="true"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+      <filter class="solr.EnglishPossessiveFilterFactory"/>
+      <filter class="solr.KeywordMarkerFilterFactory" protected="protwords.txt"/>
+      <filter class="solr.PorterStemFilterFactory"/>
+    </analyzer>
+    <analyzer type="query">
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.SynonymGraphFilterFactory" expand="true" synonyms="synonyms.txt" ignoreCase="true"/>
+      <filter class="solr.StopFilterFactory" words="lang/stopwords_en.txt" ignoreCase="true"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+      <filter class="solr.EnglishPossessiveFilterFactory"/>
+      <filter class="solr.KeywordMarkerFilterFactory" protected="protwords.txt"/>
+      <filter class="solr.PorterStemFilterFactory"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="text_en_splitting" class="solr.TextField" autoGeneratePhraseQueries="true" positionIncrementGap="100">
+    <analyzer type="index">
+      <tokenizer class="solr.WhitespaceTokenizerFactory"/>
+      <filter class="solr.StopFilterFactory" words="lang/stopwords_en.txt" ignoreCase="true"/>
+      <filter class="solr.WordDelimiterGraphFilterFactory" catenateWords="1" catenateNumbers="1" splitOnCaseChange="1" catenateAll="0" generateWordParts="1" generateNumberParts="1"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+      <filter class="solr.KeywordMarkerFilterFactory" protected="protwords.txt"/>
+      <filter class="solr.PorterStemFilterFactory"/>
+      <filter class="solr.FlattenGraphFilterFactory"/>
+    </analyzer>
+    <analyzer type="query">
+      <tokenizer class="solr.WhitespaceTokenizerFactory"/>
+      <filter class="solr.SynonymGraphFilterFactory" expand="true" synonyms="synonyms.txt" ignoreCase="true"/>
+      <filter class="solr.StopFilterFactory" words="lang/stopwords_en.txt" ignoreCase="true"/>
+      <filter class="solr.WordDelimiterGraphFilterFactory" catenateWords="0" catenateNumbers="0" splitOnCaseChange="1" catenateAll="0" generateWordParts="1" generateNumberParts="1"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+      <filter class="solr.KeywordMarkerFilterFactory" protected="protwords.txt"/>
+      <filter class="solr.PorterStemFilterFactory"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="text_en_splitting_tight" class="solr.TextField" autoGeneratePhraseQueries="true" positionIncrementGap="100">
+    <analyzer type="index">
+      <tokenizer class="solr.WhitespaceTokenizerFactory"/>
+      <filter class="solr.SynonymGraphFilterFactory" expand="false" synonyms="synonyms.txt" ignoreCase="true"/>
+      <filter class="solr.StopFilterFactory" words="lang/stopwords_en.txt" ignoreCase="true"/>
+      <filter class="solr.WordDelimiterGraphFilterFactory" generateWordParts="0" catenateAll="0" generateNumberParts="0" catenateWords="1" catenateNumbers="1"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+      <filter class="solr.KeywordMarkerFilterFactory" protected="protwords.txt"/>
+      <filter class="solr.EnglishMinimalStemFilterFactory"/>
+      <filter class="solr.RemoveDuplicatesTokenFilterFactory"/>
+      <filter class="solr.FlattenGraphFilterFactory"/>
+    </analyzer>
+    <analyzer type="query">
+      <tokenizer class="solr.WhitespaceTokenizerFactory"/>
+      <filter class="solr.SynonymGraphFilterFactory" expand="false" synonyms="synonyms.txt" ignoreCase="true"/>
+      <filter class="solr.StopFilterFactory" words="lang/stopwords_en.txt" ignoreCase="true"/>
+      <filter class="solr.WordDelimiterGraphFilterFactory" generateWordParts="0" catenateAll="0" generateNumberParts="0" catenateWords="1" catenateNumbers="1"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+      <filter class="solr.KeywordMarkerFilterFactory" protected="protwords.txt"/>
+      <filter class="solr.EnglishMinimalStemFilterFactory"/>
+      <filter class="solr.RemoveDuplicatesTokenFilterFactory"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="text_es" class="solr.TextField" positionIncrementGap="100">
+    <analyzer>
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+      <filter class="solr.StopFilterFactory" format="snowball" words="lang/stopwords_es.txt" ignoreCase="true"/>
+      <filter class="solr.SpanishLightStemFilterFactory"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="text_et" class="solr.TextField" positionIncrementGap="100">
+    <analyzer>
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+      <filter class="solr.StopFilterFactory" words="lang/stopwords_et.txt" ignoreCase="true"/>
+      <filter class="solr.SnowballPorterFilterFactory" language="Estonian"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="text_eu" class="solr.TextField" positionIncrementGap="100">
+    <analyzer>
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+      <filter class="solr.StopFilterFactory" words="lang/stopwords_eu.txt" ignoreCase="true"/>
+      <filter class="solr.SnowballPorterFilterFactory" language="Basque"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="text_fa" class="solr.TextField" positionIncrementGap="100">
+    <analyzer>
+      <charFilter class="solr.PersianCharFilterFactory"/>
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+      <filter class="solr.ArabicNormalizationFilterFactory"/>
+      <filter class="solr.PersianNormalizationFilterFactory"/>
+      <filter class="solr.StopFilterFactory" words="lang/stopwords_fa.txt" ignoreCase="true"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="text_fi" class="solr.TextField" positionIncrementGap="100">
+    <analyzer>
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+      <filter class="solr.StopFilterFactory" format="snowball" words="lang/stopwords_fi.txt" ignoreCase="true"/>
+      <filter class="solr.SnowballPorterFilterFactory" language="Finnish"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="text_fr" class="solr.TextField" positionIncrementGap="100">
+    <analyzer>
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.ElisionFilterFactory" articles="lang/contractions_fr.txt" ignoreCase="true"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+      <filter class="solr.StopFilterFactory" format="snowball" words="lang/stopwords_fr.txt" ignoreCase="true"/>
+      <filter class="solr.FrenchLightStemFilterFactory"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="text_ga" class="solr.TextField" positionIncrementGap="100">
+    <analyzer>
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.ElisionFilterFactory" articles="lang/contractions_ga.txt" ignoreCase="true"/>
+      <filter class="solr.StopFilterFactory" words="lang/hyphenations_ga.txt" ignoreCase="true"/>
+      <filter class="solr.IrishLowerCaseFilterFactory"/>
+      <filter class="solr.StopFilterFactory" words="lang/stopwords_ga.txt" ignoreCase="true"/>
+      <filter class="solr.SnowballPorterFilterFactory" language="Irish"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="text_gen_sort" class="solr.SortableTextField" positionIncrementGap="100" multiValued="true">
+    <analyzer type="index">
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.StopFilterFactory" words="stopwords.txt" ignoreCase="true"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+    </analyzer>
+    <analyzer type="query">
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.StopFilterFactory" words="stopwords.txt" ignoreCase="true"/>
+      <filter class="solr.SynonymGraphFilterFactory" expand="true" synonyms="synonyms.txt" ignoreCase="true"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="text_general" class="solr.TextField" positionIncrementGap="100" multiValued="true">
+    <analyzer type="index">
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.StopFilterFactory" words="stopwords.txt" ignoreCase="true"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+    </analyzer>
+    <analyzer type="query">
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.StopFilterFactory" words="stopwords.txt" ignoreCase="true"/>
+      <filter class="solr.SynonymGraphFilterFactory" expand="true" synonyms="synonyms.txt" ignoreCase="true"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="text_general_rev" class="solr.TextField" positionIncrementGap="100">
+    <analyzer type="index">
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.StopFilterFactory" words="stopwords.txt" ignoreCase="true"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+      <filter class="solr.ReversedWildcardFilterFactory" maxPosAsterisk="3" withOriginal="true" maxPosQuestion="2" maxFractionAsterisk="0.33"/>
+    </analyzer>
+    <analyzer type="query">
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.SynonymGraphFilterFactory" expand="true" synonyms="synonyms.txt" ignoreCase="true"/>
+      <filter class="solr.StopFilterFactory" words="stopwords.txt" ignoreCase="true"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="text_gl" class="solr.TextField" positionIncrementGap="100">
+    <analyzer>
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+      <filter class="solr.StopFilterFactory" words="lang/stopwords_gl.txt" ignoreCase="true"/>
+      <filter class="solr.GalicianStemFilterFactory"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="text_hi" class="solr.TextField" positionIncrementGap="100">
+    <analyzer>
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+      <filter class="solr.IndicNormalizationFilterFactory"/>
+      <filter class="solr.HindiNormalizationFilterFactory"/>
+      <filter class="solr.StopFilterFactory" words="lang/stopwords_hi.txt" ignoreCase="true"/>
+      <filter class="solr.HindiStemFilterFactory"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="text_hu" class="solr.TextField" positionIncrementGap="100">
+    <analyzer>
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+      <filter class="solr.StopFilterFactory" format="snowball" words="lang/stopwords_hu.txt" ignoreCase="true"/>
+      <filter class="solr.SnowballPorterFilterFactory" language="Hungarian"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="text_hy" class="solr.TextField" positionIncrementGap="100">
+    <analyzer>
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+      <filter class="solr.StopFilterFactory" words="lang/stopwords_hy.txt" ignoreCase="true"/>
+      <filter class="solr.SnowballPorterFilterFactory" language="Armenian"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="text_id" class="solr.TextField" positionIncrementGap="100">
+    <analyzer>
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+      <filter class="solr.StopFilterFactory" words="lang/stopwords_id.txt" ignoreCase="true"/>
+      <filter class="solr.IndonesianStemFilterFactory" stemDerivational="true"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="text_it" class="solr.TextField" positionIncrementGap="100">
+    <analyzer>
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.ElisionFilterFactory" articles="lang/contractions_it.txt" ignoreCase="true"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+      <filter class="solr.StopFilterFactory" format="snowball" words="lang/stopwords_it.txt" ignoreCase="true"/>
+      <filter class="solr.ItalianLightStemFilterFactory"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="text_ja" class="solr.TextField" autoGeneratePhraseQueries="false" positionIncrementGap="100">
+    <analyzer>
+      <tokenizer class="solr.JapaneseTokenizerFactory" mode="search"/>
+      <filter class="solr.JapaneseBaseFormFilterFactory"/>
+      <filter class="solr.JapanesePartOfSpeechStopFilterFactory" tags="lang/stoptags_ja.txt"/>
+      <filter class="solr.CJKWidthFilterFactory"/>
+      <filter class="solr.StopFilterFactory" words="lang/stopwords_ja.txt" ignoreCase="true"/>
+      <filter class="solr.JapaneseKatakanaStemFilterFactory" minimumLength="4"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="text_ko" class="solr.TextField" positionIncrementGap="100">
+    <analyzer>
+      <tokenizer class="solr.KoreanTokenizerFactory" outputUnknownUnigrams="false" decompoundMode="discard"/>
+      <filter class="solr.KoreanPartOfSpeechStopFilterFactory"/>
+      <filter class="solr.KoreanReadingFormFilterFactory"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="text_lv" class="solr.TextField" positionIncrementGap="100">
+    <analyzer>
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+      <filter class="solr.StopFilterFactory" words="lang/stopwords_lv.txt" ignoreCase="true"/>
+      <filter class="solr.LatvianStemFilterFactory"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="text_nl" class="solr.TextField" positionIncrementGap="100">
+    <analyzer>
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+      <filter class="solr.StopFilterFactory" format="snowball" words="lang/stopwords_nl.txt" ignoreCase="true"/>
+      <filter class="solr.StemmerOverrideFilterFactory" dictionary="lang/stemdict_nl.txt" ignoreCase="false"/>
+      <filter class="solr.SnowballPorterFilterFactory" language="Dutch"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="text_no" class="solr.TextField" positionIncrementGap="100">
+    <analyzer>
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+      <filter class="solr.StopFilterFactory" format="snowball" words="lang/stopwords_no.txt" ignoreCase="true"/>
+      <filter class="solr.SnowballPorterFilterFactory" language="Norwegian"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="text_pt" class="solr.TextField" positionIncrementGap="100">
+    <analyzer>
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+      <filter class="solr.StopFilterFactory" format="snowball" words="lang/stopwords_pt.txt" ignoreCase="true"/>
+      <filter class="solr.PortugueseLightStemFilterFactory"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="text_ro" class="solr.TextField" positionIncrementGap="100">
+    <analyzer>
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+      <filter class="solr.StopFilterFactory" words="lang/stopwords_ro.txt" ignoreCase="true"/>
+      <filter class="solr.SnowballPorterFilterFactory" language="Romanian"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="text_ru" class="solr.TextField" positionIncrementGap="100">
+    <analyzer>
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+      <filter class="solr.StopFilterFactory" format="snowball" words="lang/stopwords_ru.txt" ignoreCase="true"/>
+      <filter class="solr.SnowballPorterFilterFactory" language="Russian"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="text_sv" class="solr.TextField" positionIncrementGap="100">
+    <analyzer>
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+      <filter class="solr.StopFilterFactory" format="snowball" words="lang/stopwords_sv.txt" ignoreCase="true"/>
+      <filter class="solr.SnowballPorterFilterFactory" language="Swedish"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="text_th" class="solr.TextField" positionIncrementGap="100">
+    <analyzer>
+      <tokenizer class="solr.ThaiTokenizerFactory"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+      <filter class="solr.StopFilterFactory" words="lang/stopwords_th.txt" ignoreCase="true"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="text_tr" class="solr.TextField" positionIncrementGap="100">
+    <analyzer>
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.TurkishLowerCaseFilterFactory"/>
+      <filter class="solr.StopFilterFactory" words="lang/stopwords_tr.txt" ignoreCase="false"/>
+      <filter class="solr.SnowballPorterFilterFactory" language="Turkish"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="text_ws" class="solr.TextField" positionIncrementGap="100">
+    <analyzer>
+      <tokenizer class="solr.WhitespaceTokenizerFactory"/>
+    </analyzer>
+  </fieldType>
+  <field name="_nest_path_" type="_nest_path_"/>
+  <field name="_root_" type="string" docValues="false" indexed="true" stored="false"/>
+  <field name="_text_" type="text_general" multiValued="true" indexed="true" stored="false"/>
+  <field name="_version_" type="plong" indexed="false" stored="false"/>
+  <field name="abc" type="text_general"/>
+  <field name="add.doc.id" type="text_general"/>
+  <field name="add.doc.tags.add" type="text_general"/>
+  <field name="apikey" type="text_general"/>
+  <field name="applyUrl" type="text_general"/>
+  <field name="bulletFields" type="text_general"/>
+  <field name="bunica" type="booleans"/>
+  <field name="cities" type="text_general"/>
+  <field name="city" type="text_general"/>
+  <field name="company" type="text_general"/>
+  <field name="company_str" type="string" uninvertible="true" indexed="true" stored="true"/>
+  <field name="conuty" type="text_general"/>
+  <field name="counties" type="text_general"/>
+  <field name="country" type="text_general"/>
+  <field name="county" type="text_general"/>
+  <field name="delete" type="text_general"/>
+  <field name="department" type="text_general"/>
+  <field name="description" type="text_general"/>
+  <field name="experience" type="text_general"/>
+  <field name="externalFunction" type="text_general"/>
+  <field name="externalPath" type="text_general"/>
+  <field name="homepageTags" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018674299605_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018674299763_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018674303152_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018674303671_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018674303833_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018674306360_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018674311001_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018674311818_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018674316151_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018674316227_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018674316630_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018674317539_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018674319802_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018674322107_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018674322213_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018674322232_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018674322359_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018674322577_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018674322999_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018674368785_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018674390662_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018674392653_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018674440991_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018674508731_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018674607579_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018674641581_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018674688945_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018674689294_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018674693223_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018674895478_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018674895484_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018674979525_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018674982335_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018674991418_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018675011249_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018675019327_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018675019337_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018675019341_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018675027666_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018675027688_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018675044004_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018675050536_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018675050841_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018675058610_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018675065907_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018675089621_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018675122730_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018675124603_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018675131484_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018675152095_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018675152121_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018675155533_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018675155876_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018675157113_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018675157116_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018675261649_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018675267450_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018675267452_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018675267463_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018675267467_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018675269681_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018675269687_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018675298699_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018675307983_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018675315688_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018675351894_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018675405490_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018675405598_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018675441882_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018675489551_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018675489553_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018675489564_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018675489568_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018675490429_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018675493156_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018675493165_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018675505764_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018675505786_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018675544701_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018675547794_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018675547796_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018675556932_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018675556933_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018675556951_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018675558779_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018675563334_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018675599574_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018675635806_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018675703133_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018675704545_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018675707218_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018675712362_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018675712375_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018675713929_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018675718466_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018675723344_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018675947447_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018675962844_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018675965078_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018675965079_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018675965080_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018675966481_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018675969008_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018675970210_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676001223_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676050617_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676050620_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676050621_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676050622_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676054951_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676068441_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676068456_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676068457_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676068462_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676068598_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676154733_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676154737_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676154741_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676155021_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676171184_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676173767_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676173771_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676173772_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676173773_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676173776_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676173778_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676173783_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676181077_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676182911_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676184468_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676184611_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676184613_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676185819_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676185857_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676188375_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676188378_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676188379_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676188381_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676188382_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676188383_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676188387_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676188391_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676191521_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676194197_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676202661_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676202683_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676202692_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676202693_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676202729_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676202917_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676207188_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676207211_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676207218_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676207219_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676207221_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676207222_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676207226_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676207687_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676211059_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676211064_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676211068_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676211069_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676211070_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676212447_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676216972_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676218130_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676219714_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676219779_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676219922_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676221305_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676221309_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676221311_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676221316_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676221317_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676221344_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676226098_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676226302_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676226615_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676227911_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676236530_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676237887_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676238436_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676238437_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676238438_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676240272_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676240523_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676443715_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676443781_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676485616_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676485621_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676485626_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676501231_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676501236_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676501237_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676501244_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676502727_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676503937_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676530940_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676530941_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676532841_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676532843_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676532844_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676532845_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676532848_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676532849_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676532878_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676532953_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676543537_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676543543_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676543689_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676543690_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676543695_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676545432_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676545433_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676545434_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676545435_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676545439_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676545442_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676545468_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676545528_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676545570_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676545730_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676547116_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676552179_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676553269_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676555162_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676555252_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676555509_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676555520_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676555527_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676555528_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676567758_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676573916_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676573946_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676573953_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676573954_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676573955_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676573964_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676573965_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676575687_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676576003_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676577888_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676578686_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676578749_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676581414_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676581655_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676586038_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676586211_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676593935_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676595478_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676595966_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676596036_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676596039_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676596041_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676602215_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___jobs.vodafone.com_careers_query_Romania_pid_563018676602521_domain_vodafone.com_sort_by_relevance" type="text_general"/>
+  <field name="https___recrutare.dedeman.ro_detalii-post.php_id_00ba12fe-b53b-49bf-8d41-61b19f73f6f3" type="text_general"/>
+  <field name="https___recrutare.dedeman.ro_detalii-post.php_id_07ddd733-d73b-4064-89ba-9e16a0dfd6aa" type="text_general"/>
+  <field name="https___recrutare.dedeman.ro_detalii-post.php_id_09f88985-52cc-4bc1-99df-81f89f9fcb68" type="text_general"/>
+  <field name="https___recrutare.dedeman.ro_detalii-post.php_id_1049bb58-2dfd-4a55-90ef-88bf19e60a26" type="text_general"/>
+  <field name="https___recrutare.dedeman.ro_detalii-post.php_id_18bdb0ac-d5a4-426b-9da8-a96b1fb8d1db" type="text_general"/>
+  <field name="https___recrutare.dedeman.ro_detalii-post.php_id_195cd005-fa51-4811-940c-f8a45e98370c" type="text_general"/>
+  <field name="https___recrutare.dedeman.ro_detalii-post.php_id_1e4d9b85-db56-461d-aeac-4880e3e3609d" type="text_general"/>
+  <field name="https___recrutare.dedeman.ro_detalii-post.php_id_1fcfe63c-d74d-4467-9cec-879ada136887" type="text_general"/>
+  <field name="https___recrutare.dedeman.ro_detalii-post.php_id_236bcaff-27da-46ba-8e84-4c906b76c0dd" type="text_general"/>
+  <field name="https___recrutare.dedeman.ro_detalii-post.php_id_266487d7-7f42-4071-a39c-5a6be141819a" type="text_general"/>
+  <field name="https___recrutare.dedeman.ro_detalii-post.php_id_275ec57b-8e85-433b-9318-2607f9caa448" type="text_general"/>
+  <field name="https___recrutare.dedeman.ro_detalii-post.php_id_290f3931-f4ff-4e23-91ad-b9203181b32f" type="text_general"/>
+  <field name="https___recrutare.dedeman.ro_detalii-post.php_id_2aa89ce2-ec29-4e65-9399-0c702c3323d1" type="text_general"/>
+  <field name="https___recrutare.dedeman.ro_detalii-post.php_id_2b2fb4a9-88bb-43e8-bd1d-bf0279450e0f" type="text_general"/>
+  <field name="https___recrutare.dedeman.ro_detalii-post.php_id_2f4c54a1-370b-4250-b898-8aa848247261" type="text_general"/>
+  <field name="https___recrutare.dedeman.ro_detalii-post.php_id_301eedfd-c365-40c7-8fa6-321d4ce79eda" type="text_general"/>
+  <field name="https___recrutare.dedeman.ro_detalii-post.php_id_322b25bd-1f8a-4a62-91b2-03d6b5de2887" type="text_general"/>
+  <field name="https___recrutare.dedeman.ro_detalii-post.php_id_397f9154-c35d-48dc-a021-d2db87470f9b" type="text_general"/>
+  <field name="https___recrutare.dedeman.ro_detalii-post.php_id_39ae6053-332e-4448-8b31-97d0d203dfc4" type="text_general"/>
+  <field name="https___recrutare.dedeman.ro_detalii-post.php_id_3d754a90-8478-458a-bd44-a8c0ae133844" type="text_general"/>
+  <field name="https___recrutare.dedeman.ro_detalii-post.php_id_411689b8-8f4e-4780-b18c-8d13152aa341" type="text_general"/>
+  <field name="https___recrutare.dedeman.ro_detalii-post.php_id_439b972f-eee9-4da8-bf08-0f4f65e547a6" type="text_general"/>
+  <field name="https___recrutare.dedeman.ro_detalii-post.php_id_44c788b6-b2c9-49e3-b861-15bc20092581" type="text_general"/>
+  <field name="https___recrutare.dedeman.ro_detalii-post.php_id_485715e7-5f7b-4189-ad8b-e2fcdd9f9013" type="text_general"/>
+  <field name="https___recrutare.dedeman.ro_detalii-post.php_id_4e0f378d-a7b7-4397-b958-f312f58de383" type="text_general"/>
+  <field name="https___recrutare.dedeman.ro_detalii-post.php_id_51656aa8-3959-4a60-9e66-19b42c5fe398" type="text_general"/>
+  <field name="https___recrutare.dedeman.ro_detalii-post.php_id_556663a6-8a94-4ba6-9e32-606ff8290230" type="text_general"/>
+  <field name="https___recrutare.dedeman.ro_detalii-post.php_id_572cb3dd-74a3-4f00-8e5d-c0fd960233bb" type="text_general"/>
+  <field name="https___recrutare.dedeman.ro_detalii-post.php_id_593e1fee-d77c-482e-8941-4870c54fd221" type="text_general"/>
+  <field name="https___recrutare.dedeman.ro_detalii-post.php_id_5cb26ea9-00ce-4829-9d67-200d1155e884" type="text_general"/>
+  <field name="https___recrutare.dedeman.ro_detalii-post.php_id_5ff208d7-7313-4aaf-9fd6-a00e7d32332f" type="text_general"/>
+  <field name="https___recrutare.dedeman.ro_detalii-post.php_id_641e8411-7f00-4dee-b6dc-0fb49ca6e2d0" type="text_general"/>
+  <field name="https___recrutare.dedeman.ro_detalii-post.php_id_67014f93-f345-4c3c-bc20-6f2041ce77c4" type="text_general"/>
+  <field name="https___recrutare.dedeman.ro_detalii-post.php_id_6a856a7e-762f-424a-9fce-69606afc7f27" type="text_general"/>
+  <field name="https___recrutare.dedeman.ro_detalii-post.php_id_72775674-9f59-4564-bc70-fd81adbc6285" type="text_general"/>
+  <field name="https___recrutare.dedeman.ro_detalii-post.php_id_7b67a80e-f8da-4e2a-8abf-69e0c06b6f6f" type="text_general"/>
+  <field name="https___recrutare.dedeman.ro_detalii-post.php_id_7e252356-3901-4074-8d90-54e76516d0b4" type="text_general"/>
+  <field name="https___recrutare.dedeman.ro_detalii-post.php_id_7e2af228-6f8b-4e3c-86ee-542160c6c2f0" type="text_general"/>
+  <field name="https___recrutare.dedeman.ro_detalii-post.php_id_828412ec-a888-4064-90de-b4e1993d9db0" type="text_general"/>
+  <field name="https___recrutare.dedeman.ro_detalii-post.php_id_89793697-da38-4eb5-903c-5f1694ea6fcd" type="text_general"/>
+  <field name="https___recrutare.dedeman.ro_detalii-post.php_id_89f18f33-470d-40a8-90a0-6a38fefaf6fb" type="text_general"/>
+  <field name="https___recrutare.dedeman.ro_detalii-post.php_id_8a83f9db-e7cc-412f-b3a3-aebb52e6f22f" type="text_general"/>
+  <field name="https___recrutare.dedeman.ro_detalii-post.php_id_8d6983da-1e2d-482b-adea-744325ac5e52" type="text_general"/>
+  <field name="https___recrutare.dedeman.ro_detalii-post.php_id_8d702b8a-f452-4474-b65c-e8a8729b0d17" type="text_general"/>
+  <field name="https___recrutare.dedeman.ro_detalii-post.php_id_962d2183-6111-4d0e-9f22-44f9f136fd84" type="text_general"/>
+  <field name="https___recrutare.dedeman.ro_detalii-post.php_id_9808dd03-e719-4b04-b6bf-ad81f7214e39" type="text_general"/>
+  <field name="https___recrutare.dedeman.ro_detalii-post.php_id_9cc475e0-2241-4945-9443-cd7efa071ee0" type="text_general"/>
+  <field name="https___recrutare.dedeman.ro_detalii-post.php_id_9e08f0c9-9522-42de-a3d8-18ed11871479" type="text_general"/>
+  <field name="https___recrutare.dedeman.ro_detalii-post.php_id_9f6a2b68-d138-4f2a-ba59-340c7d1f8c24" type="text_general"/>
+  <field name="https___recrutare.dedeman.ro_detalii-post.php_id_9f9ff95f-5b52-4058-8e10-3fc76117abef" type="text_general"/>
+  <field name="https___recrutare.dedeman.ro_detalii-post.php_id_a8047565-3009-4761-bde3-0adffa41e7b1" type="text_general"/>
+  <field name="https___recrutare.dedeman.ro_detalii-post.php_id_aa3b5ebb-09a0-40ac-894f-3e59cee30869" type="text_general"/>
+  <field name="https___recrutare.dedeman.ro_detalii-post.php_id_af2f0ac8-b1e7-4bd0-b405-08e3d2b23932" type="text_general"/>
+  <field name="https___recrutare.dedeman.ro_detalii-post.php_id_b40edfcc-bb9f-4c50-8d7c-1a075a439cc3" type="text_general"/>
+  <field name="https___recrutare.dedeman.ro_detalii-post.php_id_b95dd6bc-3d8a-4d6f-b7a6-7e6e762fa452" type="text_general"/>
+  <field name="https___recrutare.dedeman.ro_detalii-post.php_id_ba0ec0bf-c999-4d7a-84a2-1b783648dba2" type="text_general"/>
+  <field name="https___recrutare.dedeman.ro_detalii-post.php_id_bd1800a8-f309-491e-b437-cc3de87e1d68" type="text_general"/>
+  <field name="https___recrutare.dedeman.ro_detalii-post.php_id_bf96afe1-91be-441a-8675-904a80ec04b9" type="text_general"/>
+  <field name="https___recrutare.dedeman.ro_detalii-post.php_id_c54ebcb6-79f3-45a5-91ef-31b1967820ac" type="text_general"/>
+  <field name="https___recrutare.dedeman.ro_detalii-post.php_id_c6c9b68c-cc61-467d-b0d9-620117a01701" type="text_general"/>
+  <field name="https___recrutare.dedeman.ro_detalii-post.php_id_cd057491-80a7-47f4-b919-a302d907c379" type="text_general"/>
+  <field name="https___recrutare.dedeman.ro_detalii-post.php_id_d4a5cb1c-d7d3-4f98-ac05-cf9d93c16ddb" type="text_general"/>
+  <field name="https___recrutare.dedeman.ro_detalii-post.php_id_da371716-adea-4b37-ac45-42f35dd54951" type="text_general"/>
+  <field name="https___recrutare.dedeman.ro_detalii-post.php_id_de9348d3-ff2b-4206-90f8-4393c180b2b9" type="text_general"/>
+  <field name="https___recrutare.dedeman.ro_detalii-post.php_id_df5ba8d1-a46c-4881-aef5-658844c35c98" type="text_general"/>
+  <field name="https___recrutare.dedeman.ro_detalii-post.php_id_dfc660c5-5bd4-4a32-9d01-ceb05b67f235" type="text_general"/>
+  <field name="https___recrutare.dedeman.ro_detalii-post.php_id_e1e177ff-3d43-419e-b998-d72562219bd9" type="text_general"/>
+  <field name="https___recrutare.dedeman.ro_detalii-post.php_id_e54b6f89-caf0-4519-bed9-203a80d313eb" type="text_general"/>
+  <field name="https___recrutare.dedeman.ro_detalii-post.php_id_ebb539fe-4f26-4db2-bb77-85abafaebcf8" type="text_general"/>
+  <field name="https___recrutare.dedeman.ro_detalii-post.php_id_ec131446-f1fa-4712-a139-289d2550648c" type="text_general"/>
+  <field name="https___recrutare.dedeman.ro_detalii-post.php_id_ed8311cc-afc5-4df7-8f6a-cbb7da65c411" type="text_general"/>
+  <field name="https___recrutare.dedeman.ro_detalii-post.php_id_eea7e440-703e-431f-b524-470e73ba8331" type="text_general"/>
+  <field name="https___recrutare.dedeman.ro_detalii-post.php_id_f83641a2-cc38-4ee5-808e-c90e21cccdb8" type="text_general"/>
+  <field name="https___recrutare.dedeman.ro_detalii-post.php_id_fcf2a8e7-afaf-4525-9df5-310ee53554fe" type="text_general"/>
+  <field name="id" type="string" multiValued="false" indexed="true" required="true" stored="true"/>
+  <field name="isHot" type="booleans"/>
+  <field name="isNew" type="booleans"/>
+  <field name="isVGS" type="booleans"/>
+  <field name="isVisible" type="booleans"/>
+  <field name="job" type="text_general"/>
+  <field name="job_city" type="text_general"/>
+  <field name="job_job" type="text_general"/>
+  <field name="job_link" type="text_general"/>
+  <field name="job_location" type="text_general"/>
+  <field name="job_logo" type="text_general"/>
+  <field name="job_title" type="text_general"/>
+  <field name="job_url" type="text_general"/>
+  <field name="jobtype" type="text_general"/>
+  <field name="location" type="text_general"/>
+  <field name="locationsText" type="text_general"/>
+  <field name="my_field" type="pdoubles"/>
+  <field name="my_multivalued_field" type="text_general"/>
+  <field name="nuexista" type="text_general"/>
+  <field name="office" type="text_general"/>
+  <field name="open_app" type="booleans"/>
+  <field name="postedOn" type="text_general"/>
+  <field name="program" type="text_general"/>
+  <field name="publicationDate" type="pdates"/>
+  <field name="qualifications" type="text_general"/>
+  <field name="remote" type="text_general"/>
+  <field name="remoteId" type="text_general"/>
+  <field name="responsibilities" type="text_general"/>
+  <field name="responsibilitiesMain" type="text_general"/>
+  <field name="routeAlias" type="text_general"/>
+  <field name="salut" type="text_general"/>
+  <field name="salutx" type="text_general"/>
+  <field name="tag" type="text_general"/>
+  <field name="tags" type="text_general"/>
+  <field name="tags.add" type="text_general"/>
+  <field name="title" type="text_general"/>
+  <field name="we_offer" type="text_general"/>
+  <dynamicField name="*_txt_en_split_tight" type="text_en_splitting_tight" indexed="true" stored="true"/>
+  <dynamicField name="*_descendent_path" type="descendent_path" indexed="true" stored="true"/>
+  <dynamicField name="*_ancestor_path" type="ancestor_path" indexed="true" stored="true"/>
+  <dynamicField name="*_txt_en_split" type="text_en_splitting" indexed="true" stored="true"/>
+  <dynamicField name="*_txt_sort" type="text_gen_sort" indexed="true" stored="true"/>
+  <dynamicField name="ignored_*" type="ignored"/>
+  <dynamicField name="*_txt_rev" type="text_general_rev" indexed="true" stored="true"/>
+  <dynamicField name="*_phon_en" type="phonetic_en" indexed="true" stored="true"/>
+  <dynamicField name="*_s_lower" type="lowercase" indexed="true" stored="true"/>
+  <dynamicField name="*_txt_cjk" type="text_cjk" indexed="true" stored="true"/>
+  <dynamicField name="random_*" type="random"/>
+  <dynamicField name="*_t_sort" type="text_gen_sort" multiValued="false" indexed="true" stored="true"/>
+  <dynamicField name="*_txt_en" type="text_en" indexed="true" stored="true"/>
+  <dynamicField name="*_txt_ar" type="text_ar" indexed="true" stored="true"/>
+  <dynamicField name="*_txt_bg" type="text_bg" indexed="true" stored="true"/>
+  <dynamicField name="*_txt_ca" type="text_ca" indexed="true" stored="true"/>
+  <dynamicField name="*_txt_cz" type="text_cz" indexed="true" stored="true"/>
+  <dynamicField name="*_txt_da" type="text_da" indexed="true" stored="true"/>
+  <dynamicField name="*_txt_de" type="text_de" indexed="true" stored="true"/>
+  <dynamicField name="*_txt_el" type="text_el" indexed="true" stored="true"/>
+  <dynamicField name="*_txt_es" type="text_es" indexed="true" stored="true"/>
+  <dynamicField name="*_txt_et" type="text_et" indexed="true" stored="true"/>
+  <dynamicField name="*_txt_eu" type="text_eu" indexed="true" stored="true"/>
+  <dynamicField name="*_txt_fa" type="text_fa" indexed="true" stored="true"/>
+  <dynamicField name="*_txt_fi" type="text_fi" indexed="true" stored="true"/>
+  <dynamicField name="*_txt_fr" type="text_fr" indexed="true" stored="true"/>
+  <dynamicField name="*_txt_ga" type="text_ga" indexed="true" stored="true"/>
+  <dynamicField name="*_txt_gl" type="text_gl" indexed="true" stored="true"/>
+  <dynamicField name="*_txt_hi" type="text_hi" indexed="true" stored="true"/>
+  <dynamicField name="*_txt_hu" type="text_hu" indexed="true" stored="true"/>
+  <dynamicField name="*_txt_hy" type="text_hy" indexed="true" stored="true"/>
+  <dynamicField name="*_txt_id" type="text_id" indexed="true" stored="true"/>
+  <dynamicField name="*_txt_it" type="text_it" indexed="true" stored="true"/>
+  <dynamicField name="*_txt_ja" type="text_ja" indexed="true" stored="true"/>
+  <dynamicField name="*_txt_ko" type="text_ko" indexed="true" stored="true"/>
+  <dynamicField name="*_txt_lv" type="text_lv" indexed="true" stored="true"/>
+  <dynamicField name="*_txt_nl" type="text_nl" indexed="true" stored="true"/>
+  <dynamicField name="*_txt_no" type="text_no" indexed="true" stored="true"/>
+  <dynamicField name="*_txt_pt" type="text_pt" indexed="true" stored="true"/>
+  <dynamicField name="*_txt_ro" type="text_ro" indexed="true" stored="true"/>
+  <dynamicField name="*_txt_ru" type="text_ru" indexed="true" stored="true"/>
+  <dynamicField name="*_txt_sv" type="text_sv" indexed="true" stored="true"/>
+  <dynamicField name="*_txt_th" type="text_th" indexed="true" stored="true"/>
+  <dynamicField name="*_txt_tr" type="text_tr" indexed="true" stored="true"/>
+  <dynamicField name="*_point" type="point" indexed="true" stored="true"/>
+  <dynamicField name="*_srpt" type="location_rpt" indexed="true" stored="true"/>
+  <dynamicField name="attr_*" type="text_general" multiValued="true" indexed="true" stored="true"/>
+  <dynamicField name="*_txt" type="text_general" indexed="true" stored="true"/>
+  <dynamicField name="*_str" type="strings" docValues="true" indexed="false" stored="false" useDocValuesAsStored="false"/>
+  <dynamicField name="*_dts" type="pdate" multiValued="true" indexed="true" stored="true"/>
+  <dynamicField name="*_dpf" type="delimited_payloads_float" indexed="true" stored="true"/>
+  <dynamicField name="*_dpi" type="delimited_payloads_int" indexed="true" stored="true"/>
+  <dynamicField name="*_dps" type="delimited_payloads_string" indexed="true" stored="true"/>
+  <dynamicField name="*_is" type="pints" indexed="true" stored="true"/>
+  <dynamicField name="*_ss" type="strings" indexed="true" stored="true"/>
+  <dynamicField name="*_ls" type="plongs" indexed="true" stored="true"/>
+  <dynamicField name="*_bs" type="booleans" indexed="true" stored="true"/>
+  <dynamicField name="*_fs" type="pfloats" indexed="true" stored="true"/>
+  <dynamicField name="*_ds" type="pdoubles" indexed="true" stored="true"/>
+  <dynamicField name="*_dt" type="pdate" indexed="true" stored="true"/>
+  <dynamicField name="*_ws" type="text_ws" indexed="true" stored="true"/>
+  <dynamicField name="*_i" type="pint" indexed="true" stored="true"/>
+  <dynamicField name="*_s" type="string" indexed="true" stored="true"/>
+  <dynamicField name="*_l" type="plong" indexed="true" stored="true"/>
+  <dynamicField name="*_t" type="text_general" multiValued="false" indexed="true" stored="true"/>
+  <dynamicField name="*_b" type="boolean" indexed="true" stored="true"/>
+  <dynamicField name="*_f" type="pfloat" indexed="true" stored="true"/>
+  <dynamicField name="*_d" type="pdouble" indexed="true" stored="true"/>
+  <dynamicField name="*_p" type="location" indexed="true" stored="true"/>
+  <copyField source="city" dest="_text_" maxChars="256"/>
+  <copyField source="company" dest="_text_" maxChars="256"/>
+  <copyField source="company" dest="company_str"/>
+  <copyField source="country" dest="_text_" maxChars="256"/>
+  <copyField source="job_link" dest="_text_" maxChars="256"/>
+  <copyField source="job_title" dest="_text_" maxChars="256"/>
+  <copyField source="job_city" dest="job_city_str" maxChars="256"/>
+  <copyField source="job_job" dest="job_job_str" maxChars="256"/>
+  <copyField source="https___recrutare.dedeman.ro_detalii-post.php_id_a8047565-3009-4761-bde3-0adffa41e7b1" dest="https___recrutare.dedeman.ro_detalii-post.php_id_a8047565-3009-4761-bde3-0adffa41e7b1_str" maxChars="256"/>
+  <copyField source="https___recrutare.dedeman.ro_detalii-post.php_id_09f88985-52cc-4bc1-99df-81f89f9fcb68" dest="https___recrutare.dedeman.ro_detalii-post.php_id_09f88985-52cc-4bc1-99df-81f89f9fcb68_str" maxChars="256"/>
+  <copyField source="https___recrutare.dedeman.ro_detalii-post.php_id_9cc475e0-2241-4945-9443-cd7efa071ee0" dest="https___recrutare.dedeman.ro_detalii-post.php_id_9cc475e0-2241-4945-9443-cd7efa071ee0_str" maxChars="256"/>
+  <copyField source="https___recrutare.dedeman.ro_detalii-post.php_id_aa3b5ebb-09a0-40ac-894f-3e59cee30869" dest="https___recrutare.dedeman.ro_detalii-post.php_id_aa3b5ebb-09a0-40ac-894f-3e59cee30869_str" maxChars="256"/>
+  <copyField source="https___recrutare.dedeman.ro_detalii-post.php_id_de9348d3-ff2b-4206-90f8-4393c180b2b9" dest="https___recrutare.dedeman.ro_detalii-post.php_id_de9348d3-ff2b-4206-90f8-4393c180b2b9_str" maxChars="256"/>
+  <copyField source="https___recrutare.dedeman.ro_detalii-post.php_id_39ae6053-332e-4448-8b31-97d0d203dfc4" dest="https___recrutare.dedeman.ro_detalii-post.php_id_39ae6053-332e-4448-8b31-97d0d203dfc4_str" maxChars="256"/>
+  <copyField source="https___recrutare.dedeman.ro_detalii-post.php_id_c6c9b68c-cc61-467d-b0d9-620117a01701" dest="https___recrutare.dedeman.ro_detalii-post.php_id_c6c9b68c-cc61-467d-b0d9-620117a01701_str" maxChars="256"/>
+  <copyField source="https___recrutare.dedeman.ro_detalii-post.php_id_593e1fee-d77c-482e-8941-4870c54fd221" dest="https___recrutare.dedeman.ro_detalii-post.php_id_593e1fee-d77c-482e-8941-4870c54fd221_str" maxChars="256"/>
+  <copyField source="https___recrutare.dedeman.ro_detalii-post.php_id_6a856a7e-762f-424a-9fce-69606afc7f27" dest="https___recrutare.dedeman.ro_detalii-post.php_id_6a856a7e-762f-424a-9fce-69606afc7f27_str" maxChars="256"/>
+  <copyField source="https___recrutare.dedeman.ro_detalii-post.php_id_ec131446-f1fa-4712-a139-289d2550648c" dest="https___recrutare.dedeman.ro_detalii-post.php_id_ec131446-f1fa-4712-a139-289d2550648c_str" maxChars="256"/>
+  <copyField source="https___recrutare.dedeman.ro_detalii-post.php_id_9f9ff95f-5b52-4058-8e10-3fc76117abef" dest="https___recrutare.dedeman.ro_detalii-post.php_id_9f9ff95f-5b52-4058-8e10-3fc76117abef_str" maxChars="256"/>
+  <copyField source="https___recrutare.dedeman.ro_detalii-post.php_id_2b2fb4a9-88bb-43e8-bd1d-bf0279450e0f" dest="https___recrutare.dedeman.ro_detalii-post.php_id_2b2fb4a9-88bb-43e8-bd1d-bf0279450e0f_str" maxChars="256"/>
+  <copyField source="https___recrutare.dedeman.ro_detalii-post.php_id_3d754a90-8478-458a-bd44-a8c0ae133844" dest="https___recrutare.dedeman.ro_detalii-post.php_id_3d754a90-8478-458a-bd44-a8c0ae133844_str" maxChars="256"/>
+  <copyField source="https___recrutare.dedeman.ro_detalii-post.php_id_44c788b6-b2c9-49e3-b861-15bc20092581" dest="https___recrutare.dedeman.ro_detalii-post.php_id_44c788b6-b2c9-49e3-b861-15bc20092581_str" maxChars="256"/>
+  <copyField source="https___recrutare.dedeman.ro_detalii-post.php_id_290f3931-f4ff-4e23-91ad-b9203181b32f" dest="https___recrutare.dedeman.ro_detalii-post.php_id_290f3931-f4ff-4e23-91ad-b9203181b32f_str" maxChars="256"/>
+  <copyField source="https___recrutare.dedeman.ro_detalii-post.php_id_da371716-adea-4b37-ac45-42f35dd54951" dest="https___recrutare.dedeman.ro_detalii-post.php_id_da371716-adea-4b37-ac45-42f35dd54951_str" maxChars="256"/>
+  <copyField source="https___recrutare.dedeman.ro_detalii-post.php_id_1049bb58-2dfd-4a55-90ef-88bf19e60a26" dest="https___recrutare.dedeman.ro_detalii-post.php_id_1049bb58-2dfd-4a55-90ef-88bf19e60a26_str" maxChars="256"/>
+  <copyField source="https___recrutare.dedeman.ro_detalii-post.php_id_828412ec-a888-4064-90de-b4e1993d9db0" dest="https___recrutare.dedeman.ro_detalii-post.php_id_828412ec-a888-4064-90de-b4e1993d9db0_str" maxChars="256"/>
+  <copyField source="https___recrutare.dedeman.ro_detalii-post.php_id_195cd005-fa51-4811-940c-f8a45e98370c" dest="https___recrutare.dedeman.ro_detalii-post.php_id_195cd005-fa51-4811-940c-f8a45e98370c_str" maxChars="256"/>
+  <copyField source="https___recrutare.dedeman.ro_detalii-post.php_id_322b25bd-1f8a-4a62-91b2-03d6b5de2887" dest="https___recrutare.dedeman.ro_detalii-post.php_id_322b25bd-1f8a-4a62-91b2-03d6b5de2887_str" maxChars="256"/>
+  <copyField source="https___recrutare.dedeman.ro_detalii-post.php_id_7b67a80e-f8da-4e2a-8abf-69e0c06b6f6f" dest="https___recrutare.dedeman.ro_detalii-post.php_id_7b67a80e-f8da-4e2a-8abf-69e0c06b6f6f_str" maxChars="256"/>
+  <copyField source="https___recrutare.dedeman.ro_detalii-post.php_id_07ddd733-d73b-4064-89ba-9e16a0dfd6aa" dest="https___recrutare.dedeman.ro_detalii-post.php_id_07ddd733-d73b-4064-89ba-9e16a0dfd6aa_str" maxChars="256"/>
+  <copyField source="https___recrutare.dedeman.ro_detalii-post.php_id_b95dd6bc-3d8a-4d6f-b7a6-7e6e762fa452" dest="https___recrutare.dedeman.ro_detalii-post.php_id_b95dd6bc-3d8a-4d6f-b7a6-7e6e762fa452_str" maxChars="256"/>
+  <copyField source="https___recrutare.dedeman.ro_detalii-post.php_id_72775674-9f59-4564-bc70-fd81adbc6285" dest="https___recrutare.dedeman.ro_detalii-post.php_id_72775674-9f59-4564-bc70-fd81adbc6285_str" maxChars="256"/>
+  <copyField source="https___recrutare.dedeman.ro_detalii-post.php_id_af2f0ac8-b1e7-4bd0-b405-08e3d2b23932" dest="https___recrutare.dedeman.ro_detalii-post.php_id_af2f0ac8-b1e7-4bd0-b405-08e3d2b23932_str" maxChars="256"/>
+  <copyField source="https___recrutare.dedeman.ro_detalii-post.php_id_641e8411-7f00-4dee-b6dc-0fb49ca6e2d0" dest="https___recrutare.dedeman.ro_detalii-post.php_id_641e8411-7f00-4dee-b6dc-0fb49ca6e2d0_str" maxChars="256"/>
+  <copyField source="https___recrutare.dedeman.ro_detalii-post.php_id_275ec57b-8e85-433b-9318-2607f9caa448" dest="https___recrutare.dedeman.ro_detalii-post.php_id_275ec57b-8e85-433b-9318-2607f9caa448_str" maxChars="256"/>
+  <copyField source="https___recrutare.dedeman.ro_detalii-post.php_id_411689b8-8f4e-4780-b18c-8d13152aa341" dest="https___recrutare.dedeman.ro_detalii-post.php_id_411689b8-8f4e-4780-b18c-8d13152aa341_str" maxChars="256"/>
+  <copyField source="https___recrutare.dedeman.ro_detalii-post.php_id_ebb539fe-4f26-4db2-bb77-85abafaebcf8" dest="https___recrutare.dedeman.ro_detalii-post.php_id_ebb539fe-4f26-4db2-bb77-85abafaebcf8_str" maxChars="256"/>
+  <copyField source="https___recrutare.dedeman.ro_detalii-post.php_id_c54ebcb6-79f3-45a5-91ef-31b1967820ac" dest="https___recrutare.dedeman.ro_detalii-post.php_id_c54ebcb6-79f3-45a5-91ef-31b1967820ac_str" maxChars="256"/>
+  <copyField source="https___recrutare.dedeman.ro_detalii-post.php_id_4e0f378d-a7b7-4397-b958-f312f58de383" dest="https___recrutare.dedeman.ro_detalii-post.php_id_4e0f378d-a7b7-4397-b958-f312f58de383_str" maxChars="256"/>
+  <copyField source="https___recrutare.dedeman.ro_detalii-post.php_id_67014f93-f345-4c3c-bc20-6f2041ce77c4" dest="https___recrutare.dedeman.ro_detalii-post.php_id_67014f93-f345-4c3c-bc20-6f2041ce77c4_str" maxChars="256"/>
+  <copyField source="https___recrutare.dedeman.ro_detalii-post.php_id_dfc660c5-5bd4-4a32-9d01-ceb05b67f235" dest="https___recrutare.dedeman.ro_detalii-post.php_id_dfc660c5-5bd4-4a32-9d01-ceb05b67f235_str" maxChars="256"/>
+  <copyField source="https___recrutare.dedeman.ro_detalii-post.php_id_1fcfe63c-d74d-4467-9cec-879ada136887" dest="https___recrutare.dedeman.ro_detalii-post.php_id_1fcfe63c-d74d-4467-9cec-879ada136887_str" maxChars="256"/>
+  <copyField source="https___recrutare.dedeman.ro_detalii-post.php_id_51656aa8-3959-4a60-9e66-19b42c5fe398" dest="https___recrutare.dedeman.ro_detalii-post.php_id_51656aa8-3959-4a60-9e66-19b42c5fe398_str" maxChars="256"/>
+  <copyField source="https___recrutare.dedeman.ro_detalii-post.php_id_89793697-da38-4eb5-903c-5f1694ea6fcd" dest="https___recrutare.dedeman.ro_detalii-post.php_id_89793697-da38-4eb5-903c-5f1694ea6fcd_str" maxChars="256"/>
+  <copyField source="https___recrutare.dedeman.ro_detalii-post.php_id_556663a6-8a94-4ba6-9e32-606ff8290230" dest="https___recrutare.dedeman.ro_detalii-post.php_id_556663a6-8a94-4ba6-9e32-606ff8290230_str" maxChars="256"/>
+  <copyField source="https___recrutare.dedeman.ro_detalii-post.php_id_ed8311cc-afc5-4df7-8f6a-cbb7da65c411" dest="https___recrutare.dedeman.ro_detalii-post.php_id_ed8311cc-afc5-4df7-8f6a-cbb7da65c411_str" maxChars="256"/>
+  <copyField source="https___recrutare.dedeman.ro_detalii-post.php_id_cd057491-80a7-47f4-b919-a302d907c379" dest="https___recrutare.dedeman.ro_detalii-post.php_id_cd057491-80a7-47f4-b919-a302d907c379_str" maxChars="256"/>
+  <copyField source="https___recrutare.dedeman.ro_detalii-post.php_id_5ff208d7-7313-4aaf-9fd6-a00e7d32332f" dest="https___recrutare.dedeman.ro_detalii-post.php_id_5ff208d7-7313-4aaf-9fd6-a00e7d32332f_str" maxChars="256"/>
+  <copyField source="https___recrutare.dedeman.ro_detalii-post.php_id_89f18f33-470d-40a8-90a0-6a38fefaf6fb" dest="https___recrutare.dedeman.ro_detalii-post.php_id_89f18f33-470d-40a8-90a0-6a38fefaf6fb_str" maxChars="256"/>
+  <copyField source="https___recrutare.dedeman.ro_detalii-post.php_id_2f4c54a1-370b-4250-b898-8aa848247261" dest="https___recrutare.dedeman.ro_detalii-post.php_id_2f4c54a1-370b-4250-b898-8aa848247261_str" maxChars="256"/>
+  <copyField source="https___recrutare.dedeman.ro_detalii-post.php_id_f83641a2-cc38-4ee5-808e-c90e21cccdb8" dest="https___recrutare.dedeman.ro_detalii-post.php_id_f83641a2-cc38-4ee5-808e-c90e21cccdb8_str" maxChars="256"/>
+  <copyField source="https___recrutare.dedeman.ro_detalii-post.php_id_18bdb0ac-d5a4-426b-9da8-a96b1fb8d1db" dest="https___recrutare.dedeman.ro_detalii-post.php_id_18bdb0ac-d5a4-426b-9da8-a96b1fb8d1db_str" maxChars="256"/>
+  <copyField source="https___recrutare.dedeman.ro_detalii-post.php_id_962d2183-6111-4d0e-9f22-44f9f136fd84" dest="https___recrutare.dedeman.ro_detalii-post.php_id_962d2183-6111-4d0e-9f22-44f9f136fd84_str" maxChars="256"/>
+  <copyField source="https___recrutare.dedeman.ro_detalii-post.php_id_485715e7-5f7b-4189-ad8b-e2fcdd9f9013" dest="https___recrutare.dedeman.ro_detalii-post.php_id_485715e7-5f7b-4189-ad8b-e2fcdd9f9013_str" maxChars="256"/>
+  <copyField source="https___recrutare.dedeman.ro_detalii-post.php_id_7e2af228-6f8b-4e3c-86ee-542160c6c2f0" dest="https___recrutare.dedeman.ro_detalii-post.php_id_7e2af228-6f8b-4e3c-86ee-542160c6c2f0_str" maxChars="256"/>
+  <copyField source="https___recrutare.dedeman.ro_detalii-post.php_id_439b972f-eee9-4da8-bf08-0f4f65e547a6" dest="https___recrutare.dedeman.ro_detalii-post.php_id_439b972f-eee9-4da8-bf08-0f4f65e547a6_str" maxChars="256"/>
+  <copyField source="https___recrutare.dedeman.ro_detalii-post.php_id_1e4d9b85-db56-461d-aeac-4880e3e3609d" dest="https___recrutare.dedeman.ro_detalii-post.php_id_1e4d9b85-db56-461d-aeac-4880e3e3609d_str" maxChars="256"/>
+  <copyField source="https___recrutare.dedeman.ro_detalii-post.php_id_7e252356-3901-4074-8d90-54e76516d0b4" dest="https___recrutare.dedeman.ro_detalii-post.php_id_7e252356-3901-4074-8d90-54e76516d0b4_str" maxChars="256"/>
+  <copyField source="https___recrutare.dedeman.ro_detalii-post.php_id_572cb3dd-74a3-4f00-8e5d-c0fd960233bb" dest="https___recrutare.dedeman.ro_detalii-post.php_id_572cb3dd-74a3-4f00-8e5d-c0fd960233bb_str" maxChars="256"/>
+  <copyField source="https___recrutare.dedeman.ro_detalii-post.php_id_9f6a2b68-d138-4f2a-ba59-340c7d1f8c24" dest="https___recrutare.dedeman.ro_detalii-post.php_id_9f6a2b68-d138-4f2a-ba59-340c7d1f8c24_str" maxChars="256"/>
+  <copyField source="https___recrutare.dedeman.ro_detalii-post.php_id_eea7e440-703e-431f-b524-470e73ba8331" dest="https___recrutare.dedeman.ro_detalii-post.php_id_eea7e440-703e-431f-b524-470e73ba8331_str" maxChars="256"/>
+  <copyField source="https___recrutare.dedeman.ro_detalii-post.php_id_d4a5cb1c-d7d3-4f98-ac05-cf9d93c16ddb" dest="https___recrutare.dedeman.ro_detalii-post.php_id_d4a5cb1c-d7d3-4f98-ac05-cf9d93c16ddb_str" maxChars="256"/>
+  <copyField source="https___recrutare.dedeman.ro_detalii-post.php_id_ba0ec0bf-c999-4d7a-84a2-1b783648dba2" dest="https___recrutare.dedeman.ro_detalii-post.php_id_ba0ec0bf-c999-4d7a-84a2-1b783648dba2_str" maxChars="256"/>
+  <copyField source="https___recrutare.dedeman.ro_detalii-post.php_id_8a83f9db-e7cc-412f-b3a3-aebb52e6f22f" dest="https___recrutare.dedeman.ro_detalii-post.php_id_8a83f9db-e7cc-412f-b3a3-aebb52e6f22f_str" maxChars="256"/>
+  <copyField source="https___recrutare.dedeman.ro_detalii-post.php_id_e54b6f89-caf0-4519-bed9-203a80d313eb" dest="https___recrutare.dedeman.ro_detalii-post.php_id_e54b6f89-caf0-4519-bed9-203a80d313eb_str" maxChars="256"/>
+  <copyField source="https___recrutare.dedeman.ro_detalii-post.php_id_8d6983da-1e2d-482b-adea-744325ac5e52" dest="https___recrutare.dedeman.ro_detalii-post.php_id_8d6983da-1e2d-482b-adea-744325ac5e52_str" maxChars="256"/>
+  <copyField source="https___recrutare.dedeman.ro_detalii-post.php_id_9808dd03-e719-4b04-b6bf-ad81f7214e39" dest="https___recrutare.dedeman.ro_detalii-post.php_id_9808dd03-e719-4b04-b6bf-ad81f7214e39_str" maxChars="256"/>
+  <copyField source="https___recrutare.dedeman.ro_detalii-post.php_id_b40edfcc-bb9f-4c50-8d7c-1a075a439cc3" dest="https___recrutare.dedeman.ro_detalii-post.php_id_b40edfcc-bb9f-4c50-8d7c-1a075a439cc3_str" maxChars="256"/>
+  <copyField source="https___recrutare.dedeman.ro_detalii-post.php_id_df5ba8d1-a46c-4881-aef5-658844c35c98" dest="https___recrutare.dedeman.ro_detalii-post.php_id_df5ba8d1-a46c-4881-aef5-658844c35c98_str" maxChars="256"/>
+  <copyField source="https___recrutare.dedeman.ro_detalii-post.php_id_fcf2a8e7-afaf-4525-9df5-310ee53554fe" dest="https___recrutare.dedeman.ro_detalii-post.php_id_fcf2a8e7-afaf-4525-9df5-310ee53554fe_str" maxChars="256"/>
+  <copyField source="https___recrutare.dedeman.ro_detalii-post.php_id_236bcaff-27da-46ba-8e84-4c906b76c0dd" dest="https___recrutare.dedeman.ro_detalii-post.php_id_236bcaff-27da-46ba-8e84-4c906b76c0dd_str" maxChars="256"/>
+  <copyField source="https___recrutare.dedeman.ro_detalii-post.php_id_8d702b8a-f452-4474-b65c-e8a8729b0d17" dest="https___recrutare.dedeman.ro_detalii-post.php_id_8d702b8a-f452-4474-b65c-e8a8729b0d17_str" maxChars="256"/>
+  <copyField source="https___recrutare.dedeman.ro_detalii-post.php_id_397f9154-c35d-48dc-a021-d2db87470f9b" dest="https___recrutare.dedeman.ro_detalii-post.php_id_397f9154-c35d-48dc-a021-d2db87470f9b_str" maxChars="256"/>
+  <copyField source="https___recrutare.dedeman.ro_detalii-post.php_id_266487d7-7f42-4071-a39c-5a6be141819a" dest="https___recrutare.dedeman.ro_detalii-post.php_id_266487d7-7f42-4071-a39c-5a6be141819a_str" maxChars="256"/>
+  <copyField source="https___recrutare.dedeman.ro_detalii-post.php_id_9e08f0c9-9522-42de-a3d8-18ed11871479" dest="https___recrutare.dedeman.ro_detalii-post.php_id_9e08f0c9-9522-42de-a3d8-18ed11871479_str" maxChars="256"/>
+  <copyField source="https___recrutare.dedeman.ro_detalii-post.php_id_00ba12fe-b53b-49bf-8d41-61b19f73f6f3" dest="https___recrutare.dedeman.ro_detalii-post.php_id_00ba12fe-b53b-49bf-8d41-61b19f73f6f3_str" maxChars="256"/>
+  <copyField source="https___recrutare.dedeman.ro_detalii-post.php_id_5cb26ea9-00ce-4829-9d67-200d1155e884" dest="https___recrutare.dedeman.ro_detalii-post.php_id_5cb26ea9-00ce-4829-9d67-200d1155e884_str" maxChars="256"/>
+  <copyField source="https___recrutare.dedeman.ro_detalii-post.php_id_e1e177ff-3d43-419e-b998-d72562219bd9" dest="https___recrutare.dedeman.ro_detalii-post.php_id_e1e177ff-3d43-419e-b998-d72562219bd9_str" maxChars="256"/>
+  <copyField source="https___recrutare.dedeman.ro_detalii-post.php_id_2aa89ce2-ec29-4e65-9399-0c702c3323d1" dest="https___recrutare.dedeman.ro_detalii-post.php_id_2aa89ce2-ec29-4e65-9399-0c702c3323d1_str" maxChars="256"/>
+  <copyField source="https___recrutare.dedeman.ro_detalii-post.php_id_bd1800a8-f309-491e-b437-cc3de87e1d68" dest="https___recrutare.dedeman.ro_detalii-post.php_id_bd1800a8-f309-491e-b437-cc3de87e1d68_str" maxChars="256"/>
+  <copyField source="https___recrutare.dedeman.ro_detalii-post.php_id_301eedfd-c365-40c7-8fa6-321d4ce79eda" dest="https___recrutare.dedeman.ro_detalii-post.php_id_301eedfd-c365-40c7-8fa6-321d4ce79eda_str" maxChars="256"/>
+  <copyField source="https___recrutare.dedeman.ro_detalii-post.php_id_bf96afe1-91be-441a-8675-904a80ec04b9" dest="https___recrutare.dedeman.ro_detalii-post.php_id_bf96afe1-91be-441a-8675-904a80ec04b9_str" maxChars="256"/>
+  <copyField source="job" dest="job_str" maxChars="256"/>
+  <copyField source="cities" dest="cities_str" maxChars="256"/>
+  <copyField source="remote" dest="remote_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018675157116_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018675157116_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676586038_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676586038_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018674322213_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018674322213_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018675947447_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018675947447_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018675124603_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018675124603_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018675155533_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018675155533_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676001223_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676001223_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018675965079_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018675965079_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018675965080_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018675965080_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018675713929_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018675713929_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676552179_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676552179_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676219714_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676219714_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676207218_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676207218_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676207219_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676207219_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676207221_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676207221_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676207222_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676207222_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676207211_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676207211_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676207188_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676207188_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018675556932_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018675556932_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018675556933_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018675556933_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018675493156_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018675493156_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018675267452_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018675267452_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018674316227_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018674316227_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676578749_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676578749_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018675599574_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018675599574_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018675505786_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018675505786_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676240272_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676240272_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676219779_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676219779_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676171184_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676171184_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018675131484_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018675131484_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018674979525_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018674979525_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018674895478_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018674895478_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018674311818_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018674311818_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676595478_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676595478_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676573946_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676573946_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676555527_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676555527_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676553269_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676553269_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676545570_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676545570_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676545528_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676545528_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676545442_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676545442_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676545433_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676545433_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676532843_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676532843_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676501231_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676501231_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676443715_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676443715_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676240523_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676240523_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676226302_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676226302_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676221317_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676221317_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676211069_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676211069_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676202917_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676202917_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676191521_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676191521_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676188383_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676188383_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676184468_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676184468_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676182911_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676182911_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676173776_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676173776_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676054951_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676054951_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676050622_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676050622_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676050620_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676050620_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676050617_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676050617_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018675965078_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018675965078_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018675962844_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018675962844_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018675712375_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018675712375_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018675704545_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018675704545_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018675635806_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018675635806_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018675563334_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018675563334_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018675558779_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018675558779_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018675556951_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018675556951_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018675547794_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018675547794_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018675547796_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018675547796_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018675544701_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018675544701_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018675489564_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018675489564_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018675489553_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018675489553_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018675489551_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018675489551_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018675489568_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018675489568_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018675405490_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018675405490_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018675315688_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018675315688_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018675298699_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018675298699_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018675269687_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018675269687_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018675269681_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018675269681_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018675267467_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018675267467_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018675267450_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018675267450_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018675267463_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018675267463_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018675261649_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018675261649_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018675152121_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018675152121_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018675152095_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018675152095_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018675050841_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018675050841_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018675027688_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018675027688_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018675027666_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018675027666_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018675019327_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018675019327_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018674982335_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018674982335_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018674895484_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018674895484_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018674689294_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018674689294_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018674306360_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018674306360_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018674316630_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018674316630_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018674303152_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018674303152_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018674303671_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018674303671_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676602521_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676602521_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676602215_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676602215_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676596041_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676596041_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676596039_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676596039_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676596036_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676596036_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676595966_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676595966_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676593935_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676593935_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676581655_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676581655_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676581414_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676581414_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676578686_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676578686_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676576003_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676576003_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676575687_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676575687_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676573953_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676573953_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676573955_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676573955_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676573965_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676573965_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676573954_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676573954_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676573964_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676573964_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676555520_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676555520_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676555528_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676555528_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676555509_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676555509_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676555252_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676555252_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676555162_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676555162_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676545439_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676545439_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676545435_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676545435_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676545434_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676545434_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676545432_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676545432_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676543690_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676543690_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676543689_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676543689_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676532878_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676532878_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676532848_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676532848_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676532845_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676532845_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676532844_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676532844_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676532841_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676532841_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676532849_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676532849_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676530940_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676530940_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676530941_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676530941_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676503937_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676503937_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676501237_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676501237_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676501236_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676501236_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676501244_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676501244_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676485616_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676485616_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676485626_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676485626_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676485621_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676485621_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676443781_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676443781_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676236530_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676236530_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676227911_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676227911_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676226615_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676226615_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676226098_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676226098_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676221344_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676221344_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676221316_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676221316_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676221309_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676221309_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676221305_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676221305_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676221311_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676221311_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676219922_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676219922_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676218130_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676218130_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676211059_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676211059_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676211064_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676211064_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676211070_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676211070_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676211068_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676211068_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676207687_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676207687_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676202729_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676202729_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676202683_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676202683_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676202693_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676202693_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676202692_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676202692_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676202661_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676202661_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676194197_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676194197_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676188375_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676188375_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676188391_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676188391_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676188378_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676188378_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676188379_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676188379_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676188381_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676188381_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676188382_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676188382_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676188387_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676188387_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676184611_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676184611_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676184613_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676184613_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676181077_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676181077_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676173783_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676173783_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676173778_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676173778_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676173773_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676173773_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676173772_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676173772_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676173771_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676173771_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676173767_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676173767_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676155021_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676155021_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676154741_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676154741_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676154737_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676154737_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676154733_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676154733_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676068598_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676068598_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676068462_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676068462_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676068441_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676068441_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676068457_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676068457_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676068456_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676068456_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676050621_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676050621_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018675970210_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018675970210_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018675969008_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018675969008_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018675966481_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018675966481_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018675723344_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018675723344_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018675718466_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018675718466_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018675712362_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018675712362_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018675707218_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018675707218_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018675703133_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018675703133_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018675505764_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018675505764_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018675493165_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018675493165_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018675441882_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018675441882_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018675405598_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018675405598_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018675351894_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018675351894_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018675307983_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018675307983_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018675157113_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018675157113_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018675155876_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018675155876_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018675065907_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018675065907_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018675050536_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018675050536_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018675044004_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018675044004_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018675019337_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018675019337_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018675019341_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018675019341_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018674991418_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018674991418_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018674693223_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018674693223_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018674688945_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018674688945_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018674641581_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018674641581_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018674508731_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018674508731_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018674440991_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018674440991_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018674368785_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018674368785_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018674299605_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018674299605_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018674322577_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018674322577_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018674322999_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018674322999_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018674299763_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018674299763_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018674316151_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018674316151_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018674322359_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018674322359_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018674322232_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018674322232_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018674319802_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018674319802_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018674317539_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018674317539_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018674322107_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018674322107_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676586211_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676586211_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676577888_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676577888_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676573916_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676573916_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676567758_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676567758_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676547116_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676547116_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676545730_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676545730_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676545468_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676545468_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676543695_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676543695_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676543543_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676543543_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676543537_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676543537_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676532953_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676532953_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676502727_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676502727_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676238436_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676238436_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676238437_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676238437_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676238438_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676238438_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676237887_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676237887_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676216972_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676216972_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676212447_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676212447_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676207226_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676207226_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676185857_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676185857_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018676185819_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018676185819_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018675490429_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018675490429_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018675122730_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018675122730_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018675089621_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018675089621_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018675058610_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018675058610_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018675011249_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018675011249_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018674607579_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018674607579_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018674392653_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018674392653_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018674390662_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018674390662_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018674311001_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018674311001_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="https___jobs.vodafone.com_careers_query_Romania_pid_563018674303833_domain_vodafone.com_sort_by_relevance" dest="https___jobs.vodafone.com_careers_query_Romania_pid_563018674303833_domain_vodafone.com_sort_by_relevance_str" maxChars="256"/>
+  <copyField source="tag" dest="tag_str" maxChars="256"/>
+  <copyField source="job_url" dest="job_url_str" maxChars="256"/>
+  <copyField source="job_location" dest="job_location_str" maxChars="256"/>
+  <copyField source="we_offer" dest="we_offer_str" maxChars="256"/>
+  <copyField source="description" dest="description_str" maxChars="256"/>
+  <copyField source="responsibilitiesMain" dest="responsibilitiesMain_str" maxChars="256"/>
+  <copyField source="office" dest="office_str" maxChars="256"/>
+  <copyField source="program" dest="program_str" maxChars="256"/>
+  <copyField source="title" dest="title_str" maxChars="256"/>
+  <copyField source="experience" dest="experience_str" maxChars="256"/>
+  <copyField source="remoteId" dest="remoteId_str" maxChars="256"/>
+  <copyField source="qualifications" dest="qualifications_str" maxChars="256"/>
+  <copyField source="responsibilities" dest="responsibilities_str" maxChars="256"/>
+  <copyField source="homepageTags" dest="homepageTags_str" maxChars="256"/>
+  <copyField source="applyUrl" dest="applyUrl_str" maxChars="256"/>
+  <copyField source="externalFunction" dest="externalFunction_str" maxChars="256"/>
+  <copyField source="location" dest="location_str" maxChars="256"/>
+  <copyField source="routeAlias" dest="routeAlias_str" maxChars="256"/>
+  <copyField source="department" dest="department_str" maxChars="256"/>
+  <copyField source="apikey" dest="apikey_str" maxChars="256"/>
+  <copyField source="county" dest="county_str" maxChars="256"/>
+  <copyField source="job_logo" dest="job_logo_str" maxChars="256"/>
+  <copyField source="nuexista" dest="nuexista_str" maxChars="256"/>
+  <copyField source="tags" dest="tags_str" maxChars="256"/>
+  <copyField source="salut" dest="salut_str" maxChars="256"/>
+  <copyField source="salutx" dest="salutx_str" maxChars="256"/>
+  <copyField source="abc" dest="abc_str" maxChars="256"/>
+  <copyField source="tags.add" dest="tags.add_str" maxChars="256"/>
+  <copyField source="my_multivalued_field" dest="my_multivalued_field_str" maxChars="256"/>
+  <copyField source="add.doc.tags.add" dest="add.doc.tags.add_str" maxChars="256"/>
+  <copyField source="add.doc.id" dest="add.doc.id_str" maxChars="256"/>
+  <copyField source="jobtype" dest="jobtype_str" maxChars="256"/>
+  <copyField source="conuty" dest="conuty_str" maxChars="256"/>
+  <copyField source="externalPath" dest="externalPath_str" maxChars="256"/>
+  <copyField source="postedOn" dest="postedOn_str" maxChars="256"/>
+  <copyField source="locationsText" dest="locationsText_str" maxChars="256"/>
+  <copyField source="bulletFields" dest="bulletFields_str" maxChars="256"/>
+  <copyField source="counties" dest="counties_str" maxChars="256"/>
+  <copyField source="delete" dest="delete_str" maxChars="256"/>
+</schema>
