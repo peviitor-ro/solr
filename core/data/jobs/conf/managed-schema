@@ -291,7 +291,7 @@
       <tokenizer class="solr.StandardTokenizerFactory"/>
       <filter class="solr.StopFilterFactory" ignoreCase="true" words="stopwords.txt"/>
       <filter class="solr.LowerCaseFilterFactory"/>
-      <filter class="solr.ReversedWildcardFilterFactory" maxPosAsterisk="3" maxFractionAsterisk="0.33" maxPosQuestion="2" withOriginal="true"/>
+      <filter class="solr.ReversedWildcardFilterFactory" maxFractionAsterisk="0.33" maxPosQuestion="2" withOriginal="true" maxPosAsterisk="3"/>
     </analyzer>
     <analyzer type="query">
       <tokenizer class="solr.StandardTokenizerFactory"/>
@@ -447,29 +447,14 @@
       <tokenizer class="solr.WhitespaceTokenizerFactory"/>
     </analyzer>
   </fieldType>
-  <field name="_id" type="text_general"/>
-  <field name="_nest_path_" type="_nest_path_"/>
-  <field name="_root_" type="string" docValues="false" indexed="true" stored="false"/>
   <field name="_text_" type="text_general" multiValued="true" indexed="true" stored="false"/>
   <field name="_version_" type="plong" indexed="false" stored="false"/>
-  <field name="apply_job_url" type="text_general"/>
-  <field name="brand" type="text_general"/>
-  <field name="bulletFields" type="text_general"/>
-  <field name="cities" type="text_general"/>
   <field name="city" type="text_general"/>
-  <field name="close_at" type="text_general"/>
   <field name="company" type="text_general"/>
   <field name="company_str" type="string" uninvertible="true" indexed="true" stored="true"/>
-  <field name="contract_type" type="text_general"/>
-  <field name="conuty" type="text_general"/>
-  <field name="counties" type="text_general"/>
   <field name="country" type="text_general"/>
-  <field name="country_code" type="text_general"/>
-  <field name="country_name" type="text_general"/>
   <field name="county" type="text_general"/>
-  <field name="custom_criteria_value" type="text_general"/>
   <field name="delete" type="text_general"/>
-  <field name="deleted_at" type="text_general"/>
   <field name="department" type="text_general"/>
   <field name="description" type="text_general"/>
   <field name="education_level" type="text_general"/>
@@ -490,31 +475,12 @@
   <field name="job_type" type="text_general"/>
   <field name="job_url" type="text_general"/>
   <field name="jobtype" type="text_general"/>
-  <field name="location" type="text_general"/>
-  <field name="locationsText" type="text_general"/>
-  <field name="open_at" type="text_general"/>
-  <field name="postedOn" type="text_general"/>
-  <field name="professional_communities" type="text_general"/>
-  <field name="ref" type="plongs"/>
   <field name="remote" type="text_general"/>
-  <field name="sbu" type="text_general"/>
   <field name="site" type="text_general"/>
-  <field name="source" type="text_general"/>
-  <field name="source_ref" type="text_general"/>
-  <field name="status" type="plongs"/>
   <field name="sursa" type="text_general"/>
   <field name="title" type="text_general"/>
   <field name="updated_at" type="pdates"/>
   <field name="validThrough" type="pdates"/>
-  <field name="wp_deleted_at" type="text_general"/>
-  <field name="wp_error" type="text_general"/>
-  <field name="wp_for_delete" type="booleans"/>
-  <field name="wp_for_insert" type="booleans"/>
-  <field name="wp_for_update" type="booleans"/>
-  <field name="wp_id" type="text_general"/>
-  <field name="wp_indexed_at" type="text_general"/>
-  <field name="wp_updated_at" type="text_general"/>
-  <field name="wp_url" type="text_general"/>
   <dynamicField name="*_txt_en_split_tight" type="text_en_splitting_tight" indexed="true" stored="true"/>
   <dynamicField name="*_descendent_path" type="descendent_path" indexed="true" stored="true"/>
   <dynamicField name="*_ancestor_path" type="ancestor_path" indexed="true" stored="true"/>
@@ -592,51 +558,15 @@
   <copyField source="job_link" dest="_text_" maxChars="256"/>
   <copyField source="job_title" dest="_text_" maxChars="256"/>
   <copyField source="remote" dest="remote_str" maxChars="256"/>
-  <copyField source="location" dest="location_str" maxChars="256"/>
   <copyField source="externalPath" dest="externalPath_str" maxChars="256"/>
-  <copyField source="postedOn" dest="postedOn_str" maxChars="256"/>
-  <copyField source="title" dest="title_str" maxChars="256"/>
-  <copyField source="locationsText" dest="locationsText_str" maxChars="256"/>
-  <copyField source="bulletFields" dest="bulletFields_str" maxChars="256"/>
-  <copyField source="wp_id" dest="wp_id_str" maxChars="256"/>
   <copyField source="hidden" dest="hidden_str" maxChars="256"/>
-  <copyField source="sbu" dest="sbu_str" maxChars="256"/>
-  <copyField source="description" dest="description_str" maxChars="256"/>
-  <copyField source="source" dest="source_str" maxChars="256"/>
-  <copyField source="wp_deleted_at" dest="wp_deleted_at_str" maxChars="256"/>
-  <copyField source="country_name" dest="country_name_str" maxChars="256"/>
   <copyField source="department" dest="department_str" maxChars="256"/>
-  <copyField source="brand" dest="brand_str" maxChars="256"/>
-  <copyField source="wp_error" dest="wp_error_str" maxChars="256"/>
-  <copyField source="professional_communities" dest="professional_communities_str" maxChars="256"/>
-  <copyField source="source_ref" dest="source_ref_str" maxChars="256"/>
-  <copyField source="deleted_at" dest="deleted_at_str" maxChars="256"/>
-  <copyField source="wp_url" dest="wp_url_str" maxChars="256"/>
-  <copyField source="contract_type" dest="contract_type_str" maxChars="256"/>
-  <copyField source="country_code" dest="country_code_str" maxChars="256"/>
-  <copyField source="site" dest="site_str" maxChars="256"/>
-  <copyField source="wp_indexed_at" dest="wp_indexed_at_str" maxChars="256"/>
   <copyField source="import_key" dest="import_key_str" maxChars="256"/>
-  <copyField source="close_at" dest="close_at_str" maxChars="256"/>
   <copyField source="education_level" dest="education_level_str" maxChars="256"/>
-  <copyField source="_id" dest="_id_str" maxChars="256"/>
-  <copyField source="apply_job_url" dest="apply_job_url_str" maxChars="256"/>
   <copyField source="experience_level" dest="experience_level_str" maxChars="256"/>
-  <copyField source="open_at" dest="open_at_str" maxChars="256"/>
-  <copyField source="custom_criteria_value" dest="custom_criteria_value_str" maxChars="256"/>
   <copyField source="hash" dest="hash_str" maxChars="256"/>
-  <copyField source="wp_updated_at" dest="wp_updated_at_str" maxChars="256"/>
-  <copyField source="job_url" dest="job_url_str" maxChars="256"/>
   <copyField source="job_location" dest="job_location_str" maxChars="256"/>
-  <copyField source="county" dest="county_str" maxChars="256"/>
-  <copyField source="job_logo" dest="job_logo_str" maxChars="256"/>
   <copyField source="jobtype" dest="jobtype_str" maxChars="256"/>
   <copyField source="job_type" dest="job_type_str" maxChars="256"/>
-  <copyField source="conuty" dest="conuty_str" maxChars="256"/>
-  <copyField source="cities" dest="cities_str" maxChars="256"/>
-  <copyField source="counties" dest="counties_str" maxChars="256"/>
-  <copyField source="delete" dest="delete_str" maxChars="256"/>
-  <copyField source="sursa" dest="sursa_str" maxChars="256"/>
-  <copyField source="jobLocationType" dest="jobLocationType_str" maxChars="256"/>
   <copyField source="hiringOrganization.name" dest="hiringOrganization.name_str" maxChars="256"/>
 </schema>
