@@ -7,8 +7,7 @@ jobs:
   data-transfer-and-clean:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+
 
       - name: Install jq
         run: sudo apt-get update && sudo apt-get install jq
@@ -16,13 +15,7 @@ jobs:
       - name: Get Master Solr Server URL
         id: solr-server
         run: |
-          echo "MASTER_SOLR_URL=$(curl -s https://api.peviitor.ro/devops/solr/)" >> $GITHUB_ENV
-          pwd
-          ls
           curl "http://zimbor.go.ro/solr/jobs/select?q=*:*&fl=job_title,job_link,company,hiringOrganization.name,country,remote,jobLocationType,validThrough,city,sursa,id,county&rows=1000000&wt=json&indent=true" -o backup.json
-          ls
-          cat backup.json # Add this line to debug the output
-          ls
           jq '.response.docs' backup.json > cleaned_backup.json
 
       # Define servers array for better management and iteration
