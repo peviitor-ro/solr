@@ -27,7 +27,7 @@ jobs:
 
       # Define servers array for better management and iteration
       - name: Define Backup Servers
-        run: echo "BACKUP_SERVERS=http://peviitor.go.ro:80,http://zimbor.go.ro:8985,http://84.117.157.10:8983,http://srvalx.duckdns.org:8983" >> $GITHUB_ENV
+        run: echo "BACKUP_SERVERS=http://peviitor.go.ro:80,http://zimbor.go.ro:8985,http://srvalx.duckdns.org:8983" >> $GITHUB_ENV
 
       # Iterating over each backup server and uploading data
       - name: Upload Data to Backup Servers
