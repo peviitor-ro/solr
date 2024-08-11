@@ -2,15 +2,13 @@ name: Solr Data Sync Across Multiple BK Servers
 
 on:
   schedule:
-   chron " 0 0 2/4 ? * * * "
+    - cron: "0 2-23/4 * * *"  # Every 4th hour starting from 2 AM
   workflow_dispatch:
-  
 
 jobs:
   data-transfer-and-clean:
     runs-on: ubuntu-latest
     steps:
-
 
       - name: Install jq
         run: sudo apt-get update && sudo apt-get install jq
@@ -21,11 +19,9 @@ jobs:
           curl "http://zimbor.go.ro/solr/jobs/select?q=*:*&fl=job_title,job_link,company,hiringOrganization.name,country,remote,jobLocationType,validThrough,city,sursa,id,county&rows=1000000&wt=json&indent=true" -o backup.json
           jq '.response.docs' backup.json > cleaned_backup.json
 
-      # Define servers array for better management and iteration
       - name: Define Backup Servers
         run: echo "BACKUP_SERVERS=http://peviitor.go.ro:80,http://zimbor.go.ro:8985,http://srvalx.duckdns.org:8983" >> $GITHUB_ENV
 
-      # Iterating over each backup server and uploading data
       - name: Upload Data to Backup Servers
         run: |
           for server in ${BACKUP_SERVERS//,/ }
