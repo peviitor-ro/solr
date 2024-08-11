@@ -1,7 +1,10 @@
 name: Solr Data Sync Across Multiple BK Servers
 
 on:
+  schedule:
+   chron " 0 0 2/4 ? * * * "
   workflow_dispatch:
+  
 
 jobs:
   data-transfer-and-clean:
