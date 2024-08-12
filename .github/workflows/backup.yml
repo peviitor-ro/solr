@@ -1,4 +1,4 @@
-name: Solr Data Sync Across Multiple BK Servers
+name: Data Sync Across BK Servers
 
 on:
   schedule:
@@ -30,7 +30,7 @@ jobs:
           git commit -m "Update cleaned_backup.json" || exit 0  # Do not fail the action if no changes
           git push         
 
-  upload-to-backup-servers:
+  up:
     needs: data-transfer-and-clean
     runs-on: ubuntu-latest
     strategy:
