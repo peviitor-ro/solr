@@ -2,7 +2,7 @@ name: Data Sync Across BK Servers
 
 on:
   schedule:
-    - cron: "0 2-23/4 * * *"  # Every 4th hour starting from 2 AM
+    - cron: "0 6,18 * * *"  
   workflow_dispatch:
 
 jobs:
