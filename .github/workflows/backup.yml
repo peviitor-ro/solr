@@ -1,52 +1,52 @@
-name: Data Sync Across BK Servers
+# name: Data Sync Across BK Servers
 
-on:
-  schedule:
-    - cron: "0 6,18 * * *"  
-  workflow_dispatch:
+# on:
+#   schedule:
+#     - cron: "0 6,18 * * *"  
+#   workflow_dispatch:
 
-jobs:
-  data-transfer-and-clean:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.ACTIONS_TOKEN }}
+# jobs:
+#   data-transfer-and-clean:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout repo
+#         uses: actions/checkout@v4
+#         with:
+#           token: ${{ secrets.ACTIONS_TOKEN }}
 
-      - name: Install jq
-        run: sudo apt-get update && sudo apt-get install jq
+#       - name: Install jq
+#         run: sudo apt-get update && sudo apt-get install jq
 
-      - name: Get Master Solr Server URL
-        run: |
-          master_server=$(curl -s https://api.peviitor.ro/devops/solr/)
-          echo $master_server
-          curl "${master_server}solr/jobs/select?q=*:*&fl=job_title,job_link,company,hiringOrganization.name,country,remote,jobLocationType,validThrough,city,sursa,id,county&rows=1000000&wt=json&indent=true" -o backup.json
-          jq '.response.docs' backup.json > cleaned_backup.json
+#       - name: Get Master Solr Server URL
+#         run: |
+#           master_server=$(curl -s https://api.peviitor.ro/devops/solr/)
+#           echo $master_server
+#           curl "${master_server}solr/jobs/select?q=*:*&fl=job_title,job_link,company,hiringOrganization.name,country,remote,jobLocationType,validThrough,city,sursa,id,county&rows=1000000&wt=json&indent=true" -o backup.json
+#           jq '.response.docs' backup.json > cleaned_backup.json
           
-      - name: Commit and Push cleaned_backup.json
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add cleaned_backup.json
-          git commit -m "Update cleaned_backup.json" || exit 0  # Do not fail the action if no changes
-          git push         
+#       - name: Commit and Push cleaned_backup.json
+#         run: |
+#           git config --local user.email "action@github.com"
+#           git config --local user.name "GitHub Action"
+#           git add cleaned_backup.json
+#           git commit -m "Update cleaned_backup.json" || exit 0  # Do not fail the action if no changes
+#           git push         
 
-  up:
-    needs: data-transfer-and-clean
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false  # Prevents cancellation of other matrix jobs if one fails
-      matrix:
-        server: ["http://peviitor.go.ro:80", "http://zimbor.go.ro:8985", "http://srvalx.duckdns.org:8983", "http://zimbor.go.ro"]
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
+#   up:
+#     needs: data-transfer-and-clean
+#     runs-on: ubuntu-latest
+#     strategy:
+#       fail-fast: false  # Prevents cancellation of other matrix jobs if one fails
+#       matrix:
+#         server: ["http://peviitor.go.ro:80", "http://zimbor.go.ro:8985", "http://srvalx.duckdns.org:8983", "http://zimbor.go.ro"]
+#     steps:
+#       - name: Checkout repo
+#         uses: actions/checkout@v4
       
-      - name: Upload Data to Backup Server
-        run: |
-          echo "Cleaning data on ${{ matrix.server }}"
-          curl "${{ matrix.server }}/solr/jobs/update" -H "Content-Type: text/xml" --data-binary '<delete><query>*:*</query></delete>'
-          curl "${{ matrix.server }}/solr/jobs/update" --data '<commit/>'
-          echo "Uploading data to ${{ matrix.server }}"
-          curl "${{ matrix.server }}/solr/jobs/update?commit=true" -H "Content-Type: application/json" --data-binary @cleaned_backup.json
+#       - name: Upload Data to Backup Server
+#         run: |
+#           echo "Cleaning data on ${{ matrix.server }}"
+#           curl "${{ matrix.server }}/solr/jobs/update" -H "Content-Type: text/xml" --data-binary '<delete><query>*:*</query></delete>'
+#           curl "${{ matrix.server }}/solr/jobs/update" --data '<commit/>'
+#           echo "Uploading data to ${{ matrix.server }}"
+#           curl "${{ matrix.server }}/solr/jobs/update?commit=true" -H "Content-Type: application/json" --data-binary @cleaned_backup.json
