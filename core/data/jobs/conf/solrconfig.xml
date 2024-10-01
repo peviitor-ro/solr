@@ -755,6 +755,30 @@
        not be initialized until the first request that uses it.
 
     -->
+<requestHandler name="/suggest" class="solr.SearchHandler" startup="lazy">
+  <lst name="defaults">
+    <str name="suggest">true</str>
+    <str name="suggest.dictionary">jobTitleSuggester</str>
+    <str name="suggest.count">10</str>
+  </lst>
+  <arr name="components">
+    <str>suggest</str>
+  </arr>
+</requestHandler>
+
+ <searchComponent name="suggest" class="solr.SuggestComponent">
+  <lst name="suggester">
+    <str name="name">jobTitleSuggester</str>
+    <str name="lookupImpl">FuzzyLookupFactory</str>
+    <str name="dictionaryImpl">DocumentDictionaryFactory</str>
+    <str name="field">job_title</str>
+    <str name="suggestAnalyzerFieldType">text_general</str>
+    <str name="buildOnCommit">true</str>
+    <str name="buildOnStartup">false</str>
+  </lst>
+</searchComponent>
+	
+	
   <!-- SearchHandler
 
        http://wiki.apache.org/solr/SearchHandler
