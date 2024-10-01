@@ -467,7 +467,7 @@
   <field name="job_link" type="text_general"/>
   <field name="job_location" type="text_general"/>
   <field name="job_logo" type="text_general"/>
-  <field name="job_title" type="text_general"/>
+  <field name="job_title" type="text_general" indexed="true" stored="true" />
   <field name="job_type" type="text_general"/>
   <field name="job_url" type="text_general"/>
   <field name="remote" type="text_general"/>
